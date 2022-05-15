@@ -1,0 +1,112 @@
+<div class="card border-0 m-45">
+    <div class="card-body">
+        <div class="row mx-12">
+            <div class="col-md-12 col-lg-12">
+                <form #frm="ngForm" class="needs-validation"  (ngSubmit)="submit();">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="name" class="form-label">أسم الدائرة او المركز:</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="" [(ngModel)]="FingurePrintOffice.name" required />
+                        </div>
+                        <div class="col-sm-4 offset-4">
+                            <label for="engName" class="form-label">مسؤول دائرة البصمة:</label>
+                            <input type="text" class="form-control" name="engName" id="engName" placeholder="" [(ngModel)]="FingurePrintOffice.admin" required />
+                        </div>
+                    </div>
+    
+                    <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mt-5">
+                        <h4 class="d-inline">الاقسام</h4>
+                        <button type="button" class="btn pointer font-weight-normal font-size-30 text-blue"
+                            (click)="FingurePrintOffice.addDepartment()">
+                            <h4><i class="fa fa-plus px-2"></i> <span>قسم جديد</span></h4>
+                        </button>
+                    </div>
+                    <ol>
+                        <li *ngFor="let item of FingurePrintOffice.Departments; let i = index" class="border my-3 py-2">
+                            <div class="row my-3 mx-n1 ">
+                                <div class="col-md-4">
+                                    <label for="department_name{{i}}" class="form-label">أسم القسم</label>
+                                    <input type="text" class="form-control" name="department_name{{i}}" id="department_name{{i}}" [(ngModel)]="item.name" required />
+                                </div>
+                                <div class="col-md-4 offset-1">
+                                    <button type="button" class="btn mt-5 pointer font-weight-normal font-size-30 text-blue"
+                                        (click)="FingurePrintOffice.addUnit(i);">
+                                        <i class="fa fa-plus px-2"></i> <span>أضافة وحدة او شعبة</span>
+                                    </button>
+                                </div>
+                                <div class="col-md-1 offset-2">
+                                    <button class="btn mt-5 text-danger" (click)="FingurePrintOffice.removeDepartment(i)" title="حذف القسم">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row my-1" *ngFor="let unit of item.units; let j = index" >
+                                <div class="col-md-1 ">
+                                    <button class="btn  mt-5  text-danger" (click)="FingurePrintOffice.removeUnit(i,j);" title="حذف الشعبة او ألوحدة">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-4 offset-1">
+                                    <label for="unit_name{{i}}_{{j}}" class="form-label">أسم الشعبة أو الوحدة :</label>
+                                    <input type="text" class="form-control" name="unit_name{{i}}_{{j}}" id="unit_name{{i}}_{{j}}" [(ngModel)]="unit.name" required />
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+    
+                    <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mt-5">
+                        <h4 class="d-inline">أجهزة البصمة</h4>
+                        <button type="button" class="btn pointer font-weight-normal font-size-30 text-blue" (click)="FingurePrintOffice.addDevice();">
+                            <h4>
+                                <i class="fa fa-plus px-2"></i> <span>أضافة جهاز بصمة</span>
+                            </h4>
+                        </button>
+                    </div>
+                    <ol *ngFor="let item of FingurePrintOffice.Devices; let i = index" class="border my-3 py-3">
+                        <div class="row">
+                            <div class="col-md-1 ">
+                                <button class="btn  mt-5  text-danger" (click)="FingurePrintOffice.removeDevice(i);" title="حذف الجهاز">
+                                    <i class="fa fa-times fa-lg"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-4 offset-1">
+        
+                                <label for="device_name{{i}}" class="form-label">اسم الجهاز :</label>
+                                <input type="text" class="form-control" name="device_name{{i}}" id="device_name{{i}}" [(ngModel)]="item.name" required />
+                            </div>
+                            <div class="col-md-3 offset-2" dir="ltr">
+                                <label for="device_ip{{i}" class="form-label float-end">IP address :</label>
+                                <input type="text" class="form-control w-60" name="device_ip{{i}}" id="device_ip{{i}}"  [(ngModel)]="item.ip" required />
+                            </div>
+    
+                        </div>
+                    </ol>
+
+
+                    <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mt-5">
+                        <h4 class="d-inline">أوقات ألدوام </h4>
+                    </div>
+
+                    <div class="row mb-4 mt-2">
+                        <div class="col-md-4">
+                            <label for="starttime" class="form-label">من الساعه :</label>
+                            <input type="time" class="form-control" name="starttime" [(ngModel)]="FingurePrintOffice.TimePeriod.inTime" id="starttime"  min="09:00" max="14:00" required />
+                        </div>
+                        <div class="col-md-4 offset-4">
+                            <label for="endtime" class="form-label">ألى ألساعه :</label>
+                            <input type="time" class="form-control" name="endtime" [(ngModel)]="FingurePrintOffice.TimePeriod.outTime" id="endtime"   required min="09:00" max="14:30" />
+                        </div>
+                    </div>
+
+
+                  
+    
+                    <button class="w-100 btn btn-primary btn-lg my-3" type="submit">
+                        حفظ المعلومات
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

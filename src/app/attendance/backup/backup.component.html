@@ -1,0 +1,47 @@
+<input style="display: none" type="file" (change)="importDatabase($event)" accept=".db" #databaseFileInput>
+<input style="display: none" type="file" (change)="importConfigs($event)" accept=".json" #configFileInput>
+
+<div class="card m-45 mx-10">
+    <header class="card-header py-3">
+        <h5 class="d-inline"> <i class="fa fa-database pl-3 pr-1"></i> قاعدة البيانات</h5>
+    </header>
+    <div class="card-body">
+        <div class="row  px-3 py-5 mx-0">
+            <div class="col-md-4 ">
+                <button type="button" class="btn btn-success btn-block w-100 " (click)="databaseFileInput.click();" [disabled]="isLoading"> 
+                    <i class="fa fa-file-import px-2"></i> أستيراد قاعدة البيانات 
+                </button>
+            </div>
+            <div class="col-md-4 offset-4">
+                <button type="button" class="btn btn-success btn-block w-100 " (click)="admin.exportDatabase();"  [disabled]="isLoading">
+                    <i class="fa fa-file-export px-2 fa-rotate-180"></i> تصدير قاعدة البيانات 
+                </button>
+            </div> 
+
+        </div>
+    </div>
+</div>
+
+<div class="card m-45 mx-10">
+    <header class="card-header py-3">
+        <h5 class="d-inline"> <i class="fa fa-cogs pl-3"></i> أعدادات البرنامج</h5>
+    </header>
+    <div class="card-body">
+        <div class="row  px-3 py-5 mx-0">
+            <div class="row  px-3 py-5 mx-0">
+                <div class="col-md-4 ">
+                    <button type="button" class="btn btn-success btn-block w-100 "  (click)="configFileInput.click();" [disabled]="isLoading"> 
+                        <i class="fa fa-file-import px-2"></i> أستيراد ألاعدادات 
+                    </button>
+                </div>
+                <div class="col-md-4 offset-4">
+                    <button type="button" class="btn btn-success btn-block w-100 " (click)="admin.exportConfigs();" [disabled]="isLoading">
+                        <i class="fa fa-file-export px-2 fa-rotate-180"></i> تصدير ألاعدادات
+                    </button>
+                </div>
+    
+            </div>
+
+        </div>
+    </div>
+</div>

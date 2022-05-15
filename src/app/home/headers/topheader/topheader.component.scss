@@ -1,0 +1,30 @@
+.logo{
+    max-height: 120px;
+    max-width: 140px;
+}
+.nav-link-local{
+    font-size: 18px;
+    i{
+        position: relative ;
+        top: 3px;
+    }
+}
+#sidebarCollapse {
+    width: 40px;
+    position: static;
+    :hover{
+        cursor: pointer;
+    }
+
+    i {
+        position: absolute;
+        right: 20px;
+        top: 12px;
+        transition: all 0.8s ease-in;
+        transition-delay: 0.1s;
+
+        &.hidden {
+            opacity: 0;
+        }
+    }
+}

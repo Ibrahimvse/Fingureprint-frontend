@@ -1,0 +1,60 @@
+<div class="wrapper ">
+    <div class="sidebar border-left border-red">
+        <div class="sidebar-header ">
+            <h4> <i class="fas fa-fingerprint"></i> البصمة الالكترونية </h4>
+         </div>
+         <ul class="list-unstyled">
+            <li>
+                <a routerLink="employees" routerLinkActive="active" >
+                   <i class="fa fa-user fa-lg px-4"></i>الموظفين
+               </a>
+            </li>
+            <li routerLink="devices" routerLinkActive="active">
+                <a>
+                   <i class="fa fa-laptop  px-4"></i>الاجهزة المرتبطه
+               </a>
+            </li>
+            <li>
+                <a routerLink="dailyreport" routerLinkActive="active" >
+                    <i class="fa fa-file fa-lg px-4"></i>التقرير اليومي
+                </a>
+            </li>
+            <li>
+                <a routerLink="monthlyreport" routerLinkActive="active" >
+                    <i class="fa fa-chart-bar fa-lg px-4"></i>التقرير الشهري
+                </a>
+            </li>
+            <li>
+                <a routerLink="timeoffReport" routerLinkActive="active" >
+                    <i class="fa fa-clock fa-lg px-4"></i>الاجازات الزمنية
+                </a>
+            </li>
+             <li>
+                 <a routerLink="editcollege" routerLinkActive="active">
+                     <i class="fa fa-cogs  px-4"></i>اعدادات التقرير
+                </a>
+            </li>
+            <li>
+                <a routerLink="backup" routerLinkActive="active">
+                    <i class="fa fa-database  px-4"></i> النسخ الاحتياطي
+               </a>
+           </li>
+            
+         </ul>
+         <div class="text-center" style="width: 100%;height:200px;">
+            <img src="../../../assets/img/device.png"  class=" w-80 h-100"  />
+
+         </div>
+        
+    </div>
+
+    <div class="contents">
+        <div class="page-header  d-flex d-inline-flex justify-content-between w-100">
+            <h4 class="d-inline "> {{this.fingureprint.fingureprintoffice.name +" / "+this.fingureprint.routerlink}} </h4> 
+        </div>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="card m-45 border-0 mx-10">
+    <div class="card-body">
+        <div class="row" *ngIf="isLoading == true">
+            <div class="col-md-12 text-center">
+                <div class="fa-4x">
+                    <i class="fa fa-spinner fa-pulse"></i>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="Employees.length">
+            <table id="recordstable" datatable [dtOptions]="this.dtOptions" class="
+                    table table-responsive
+                    border-dark border-top
+                    table-bordered table-striped
+                    row-border
+                    table-sm
+                    w-100
+                    p-0
+                    m-0
+                ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ألاسم الثلاثي</th>
+                        <th>القسم</th>
+                        <th>الوحدة</th>
+                        <th>الملاحظات</th>
+                        <th>ألاعدادات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of Employees; let i = index">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.department }}</td>
+                        <td>{{ item.unit }}</td>
+                        <td class="notes">{{ item.notes }}</td>
+                        <td class="text-center">
+                            <i class="fas fa-ellipsis-v px-2" [matMenuTriggerFor]="menu"
+                                aria-label="Example icon-button with a menu"></i>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="router.navigateTo('/fingureprint/employees/edit/'+item.id)">
+                                    <i class="fa fa-edit fa-lg text-green"></i>
+                                    <span>تعديل</span>
+                                </button>
+                                <button mat-menu-item (click)="
+                                        SelectedItem = item;
+                                        modal.open(template, 'modal-md')
+                                    ">
+                                    <i class="fa fa-trash fa-lg text-danger"></i>
+                                    <span>حذف</span>
+                                </button>
+
+                                <button mat-menu-item (click)="router.navigateTo('/fingureprint/employees/employeereport/'+item.id)">
+                                    <i class="fa fa-file-excel fa-lg text-green"></i>
+                                    <span>تقرير  الموظف</span>
+                                </button>
+                                <button mat-menu-item (click)="router.navigateTo('/fingureprint/employees/employeetimeoff/'+item.id)">
+                                    <i class="fa fa-clock fa-lg text-green"></i>
+                                    <span>الاجازات الزمنية</span>
+                                </button>
+                            </mat-menu>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left"> حذف  {{ SelectedItem.name }}</h4>
+        <button type="button" class="btn close pull-right font-size-20" aria-label="Close" (click)="modal.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center just">
+        <p>هل انت متاكد من حذف هذا الموظف؟</p>
+        <div class="d-flex d-inline-flex justify-content-between w-100">
+            <button type="button" class="btn btn-secondary float-left w-40" (click)="modal.hide()">
+                الغاء
+            </button>
+            <button type="button" class="btn btn-danger float-right w-40" (click)="delete(SelectedItem.id)">
+                حذف
+            </button>
+        </div>
+    </div>
+</ng-template>

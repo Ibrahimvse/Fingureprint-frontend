@@ -1,0 +1,144 @@
+<div class="card m-45 border-0 mx-10">
+  <article class="class-body m-0 p-0 py-2 " *ngIf="devices.length">
+    <table id="datasettable" datatable [dtOptions]="this.dtOptions"
+      class="table border-dark border-top table-bordered  table-striped row-border table-sm w-100 p-0 m-0">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>دائرة البصمة</th>
+          <th>اسم الجهاز</th>
+          <th class="IP" style="text-align: left;">Ip</th>
+          <th>حالة الاتصال</th>
+          <th>الاجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of devices;let i=index;">
+          <td>{{i+1}}</td>
+          <td>{{this.fingureprint.fingureprintoffice.name}}</td>
+          <td>{{item.name}}</td>
+          <td class="IP">{{item.ip}}</td>
+          <td>
+            <span *ngIf="item.status=='no'"><i class="fa fa-exclamation-circle fa-lg px-2 text-danger"></i>غير
+              متصل</span>
+            <span *ngIf="item.status=='yes'"><i class="fa fa-check-circle fa-lg px-2 text-success"></i> متصل</span>
+            <span *ngIf="item.status=='fail'"><i class="fa fa-exclamation-circle fa-lg px-2 text-danger"></i> فشل
+              الاتصال</span>
+            <span *ngIf="item.status=='connecting'"><i class="fa fa-spinner fa-pulse fa-lg px-2 text-primary"></i> جاري
+              الاتصال بالجهاز</span>
+          </td>
+          <td class="text-center">
+            <i class="fas fa-ellipsis-v px-2" [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"></i>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="getDeviceUsers(item)" [disabled]="item.status!='yes'">
+                    <i class="fa fa-list fa-lg text-green"></i>
+                    <span>موظفين الجهاز</span>
+                </button>
+            </mat-menu>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex d-inline-flex justify-content-between w-100 mt-5">
+      <button class="btn btn-success" (click)="connectDevices()">
+        <i class="fa fa-redo px-2"></i> تحديث الاتصال بالاجهزة
+      </button>
+      <button class="btn btn-success" (click)="doanLoadUsers();">
+        <i class="fa fa-download px-2"></i> تحديث الموظفين من الاجهزة
+      </button>
+
+    </div>
+  </article>
+</div>
+<hr class="mt-0">
+<div class="card my-0 py-0 border-0 mx-10" *ngIf="mode=='deviceUsers'">
+  <article class="class-body m-0 p-0 py-0 " >
+    <div class="row" *ngIf="isLoading == true">
+      <div class="col-md-12 text-center">
+        <div class="fa-4x">
+          <i class="fa fa-spinner fa-pulse"></i>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="Users.length" class="my-0">
+      <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mb-5 mt-0">
+        <h5 class="d-inline" *ngIf="mode=='deviceUsers'">عرض بيانات موظفين {{SelectedDevice.name}}</h5>
+      </div>
+      <table id="userstable" datatable [dtOptions]="this.dtOptions" class="
+                table table-responsive
+                border-dark border-top
+                table-bordered table-striped
+                row-border
+                table-sm
+                w-100
+                p-0
+                m-0
+            ">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ألاسم الثلاثي</th>
+            <th>رقم البطاقه</th>
+            <th>الصلاحيات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of Users; let i = index">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.cardno }}</td>
+            <td>{{ item.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</div>
+
+<div class="card my-0 py-0 border-0 mx-10" *ngIf="mode=='newUsers'">
+  <article class="class-body m-0 p-0 py-0 " >
+    <div class="row" *ngIf="isLoading == true">
+      <div class="col-md-12 text-center">
+        <div class="fa-4x">
+          <i class="fa fa-spinner fa-pulse"></i>
+        </div>
+      </div>
+    </div>
+    <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mb-5 mt-0" *ngIf="mode=='newUsers' && Users.length==0 && isLoading==false">
+      <h5 class="d-inline" >لم يتم العثور على بيانات جديدة من الاجهزة</h5>
+    </div>
+    <div *ngIf="Users.length" class="my-0">
+      <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mb-5 mt-0">
+        <h5 class="d-inline" *ngIf="mode=='newUsers'">تم أضافة  {{Users.length}}  موظف جديد الى قاعدة بيانات الموظفين</h5>
+      </div>
+      <table id="userstable" datatable [dtOptions]="this.dtOptions" class="
+                table table-responsive
+                border-dark border-top
+                table-bordered table-striped
+                row-border
+                table-sm
+                w-100
+                p-0
+                m-0
+            ">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ألاسم الثلاثي</th>
+            <th>رقم البطاقه</th>
+            <th>الصلاحيات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of Users; let i = index">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.cardno }}</td>
+            <td>{{ item.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</div>

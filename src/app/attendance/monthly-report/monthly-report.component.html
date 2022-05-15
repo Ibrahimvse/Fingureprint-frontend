@@ -1,0 +1,64 @@
+<div class="card m-45 border-0 mx-10">
+    <div class="card-body">
+        <form #frm="ngForm" class="needs-validation"  (ngSubmit)="submit(frm);">
+            <div class="row border px-3 py-5 mx-0">
+                <div class="col-md-4">
+                    <label for="startdate" class="form-label">من تاريخ:</label>
+                    <input type="date" class="form-control" name="startdate" [(ngModel)]="period.start" id="startdate" placeholder="" required />
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="enddate" class="form-label ">ألى تاريخ:</label>
+                    <div class="form-l">
+                        <input  class="form-control" type="date" name="enddate" [(ngModel)]="period.end" id="enddate" placeholder="" required />
+                    </div>
+    
+                </div>
+                <div class="col-md-3 offset-1">
+                    <button type="submit" class="btn btn-success btn-block w-100 mt-5"> اعداد التقرير</button>
+                </div>
+            </div>
+
+            <hr class="my-5">
+            <div class="row" *ngIf="isLoading==true">
+                <div class="col-md-12 text-center">
+                    <div class="fa-4x">
+                        <i class="fa fa-spinner fa-pulse"></i>
+                    </div>
+                   
+                </div>
+            </div>
+            <div *ngIf="records.length">
+                <table id="recordstable" datatable  [dtOptions]="this.dtOptions" class="table table-responsive border-dark border-top table-bordered  table-striped row-border table-sm w-100 p-0 m-0">
+                    <thead >
+                      <tr>
+                        <th>#</th>
+                        <th>ألاسم الثلاثي</th>
+                        <th>القسم</th>
+                        <th>أيام الحضور</th>
+                        <th>الزمنيات</th>
+                        <th>الملاحضات</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of records;let i=index;">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td >{{item.department}}</td>
+                        <td>{{item.dayscount}}</td>
+                        <td>{{item.totalTime}}</td>
+                        
+                        <td class="notes">{{item.notes}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </form>
+
+    </div>
+    <article class="class-body m-0 p-0 py-2 " >
+
+    </article>
+</div>
+
