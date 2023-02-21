@@ -1,14 +1,18 @@
-<div class="card m-45 border-0 mx-10">
+<div class="card m-45 border-0 mx-7">
     <div class="card-body">
         <form #frm="ngForm" class="needs-validation"  (ngSubmit)="submit(frm);">
             <div class="border px-3 py-5 mx-0">
                 <div class="row ">
                     <div class="col-md-4">
-                        <label for="startdate" class="form-label">ألتاريخ:</label>
-                        <input type="date" class="form-control" name="startdate" [(ngModel)]="period.start" id="startdate" placeholder="" required />
+                        <app-datepicker
+                            [input]="period.start"
+                            [name]="'marriageDate'" 
+                            [label]="'ألتاريخ'" 
+                            (dateChange)="period.start=$event">
+                        </app-datepicker>
                     </div>
-                    <div class="col-md-3 offset-5">
-                        <button type="submit" class="btn btn-success btn-block w-100 mt-5"> اعداد التقرير</button>
+                    <div class="col-md-4 offset-4">
+                        <button type="submit" class="btn btn-success btn-block w-100 mt-5"><i class="fa fa-file-alt px-2" aria-hidden="true"></i> اعداد ألتقرير أليومي </button>
                     </div>
                 </div>
                 <div class="row mt-5 px-1">
@@ -26,7 +30,7 @@
                             <label for="Setting-in" class="px-5"> تقرير الحضور</label>
                         </div>    
                     </div>
-                    <div class="col-md-3 font-size-20 offset-1" >
+                    <div class="col-md-4 font-size-20 " >
                         <div class="icheck-greensea  my-2 ">
                             <input class="box" type="radio" (change)="records=[];"  [checked]="report_type=='out'" name="report_type"
                                 [(ngModel)]="report_type" value="out" id="Setting-out">
@@ -48,8 +52,8 @@
                    
                 </div>
             </div>
-            <div *ngIf="records.length">
-                <table id="recordstable" datatable  [dtOptions]="this.dtOptions" class="table table-responsive border-dark border-top table-bordered  table-striped row-border table-sm w-100 p-0 m-0">
+            <div *ngIf="records.length" class="tabl-responsive">
+                <table id="recordstable" datatable  [dtOptions]="this.dtOptions" class="table  border-dark border-top table-bordered  table-striped row-border   p-0 m-0">
                     <thead >
                       <tr>
                         <th>#</th>
@@ -71,7 +75,6 @@
                       </tr>
                     </tbody>
                 </table>
-
             </div>
 
         </form>

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { FingureprintService } from '../../services/fingureprint.service';
 import { dtOptions, monthlyButtonsOptions } from '../../classes/datatable';
 import { DataTableDirective } from 'angular-datatables';
-import { Period } from '../../classes/util';
+import { TimePeriod,DateUtil } from '../../classes/util';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { Period } from '../../classes/util';
 export class DailyReportComponent implements OnInit {
     records: any[] = [];
     devices: any[] = [];
-    period: Period = new Period();
+    period:TimePeriod=new TimePeriod();
     dtOptions: any = {};
     isLoading: Boolean = false;
     report_type:string="inout";
@@ -54,7 +54,7 @@ export class DailyReportComponent implements OnInit {
         }) 
     }
     setBuutons(){
-        var date=this.period.start;
+        var date=DateUtil.getDateString(this.period.start)
         var office=this.fingureprint.fingureprintoffice.name;
         var admin=this.fingureprint.fingureprintoffice.admin;
         var type=" الحضور والانصراف ";

@@ -1,6 +1,6 @@
-<div class="card border-0 m-45">
+<div class="card border-0 m-45 mx-7">
     <div class="card-body">
-        <div class="row mx-12">
+        <div class="row">
             <div class="col-md-12 col-lg-12">
                 <form #frm="ngForm" class="needs-validation"  (ngSubmit)="submit();">
                     <div class="row">
@@ -14,11 +14,11 @@
                         </div>
                     </div>
     
-                    <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mt-5">
-                        <h4 class="d-inline">الاقسام</h4>
-                        <button type="button" class="btn pointer font-weight-normal font-size-30 text-blue"
+                    <div class="section-header">
+                        <h4>الاقسام</h4>
+                        <button type="button" class="btn"
                             (click)="FingurePrintOffice.addDepartment()">
-                            <h4><i class="fa fa-plus px-2"></i> <span>قسم جديد</span></h4>
+                            <i class="fa fa-plus px-2"></i> قسم جديد
                         </button>
                     </div>
                     <ol>
@@ -54,9 +54,9 @@
                         </li>
                     </ol>
     
-                    <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mt-5">
+                    <div class="section-header">
                         <h4 class="d-inline">أجهزة البصمة</h4>
-                        <button type="button" class="btn pointer font-weight-normal font-size-30 text-blue" (click)="FingurePrintOffice.addDevice();">
+                        <button type="button" class="btn" (click)="FingurePrintOffice.addDevice();">
                             <h4>
                                 <i class="fa fa-plus px-2"></i> <span>أضافة جهاز بصمة</span>
                             </h4>
@@ -83,11 +83,11 @@
                     </ol>
 
 
-                    <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mt-5">
-                        <h4 class="d-inline">أوقات ألدوام </h4>
+                    <div class="section-header ">
+                        <h4 >أوقات ألدوام </h4>
                     </div>
 
-                    <div class="row mb-4 mt-2">
+                    <div class="row mb-4  mx-0 py-3 border pt-3 border-top-0 pb-5">
                         <div class="col-md-4">
                             <label for="starttime" class="form-label">من الساعه :</label>
                             <input type="time" class="form-control" name="starttime" [(ngModel)]="FingurePrintOffice.TimePeriod.inTime" id="starttime"  min="09:00" max="14:00" required />
@@ -98,12 +98,29 @@
                         </div>
                     </div>
 
+                    
+                    <div class="section-header ">
+                        <h4 >أوقات ألدوام (يوم ألخميس) </h4>
+                    </div>
+                    <div class="row  border mx-0 pt-3 border-top-0 pb-5">
+                        <div class="col-md-4 offset-8">
+                            <label for="ThuresDayendtime" class="form-label">ألى ألساعه :</label>
+                            <input type="time" class="form-control" id="ThuresDayendtime" name="ThuresDayendtime" [(ngModel)]="FingurePrintOffice.TimePeriod.ThuresDay" id="endtime"   required min="09:00" max="14:30" />
+                        </div>
+                    </div>
 
-                  
+
+                    <div class="row mt-10">
+                        <div class="col-md-4">
+                            <button class="btn btn-success w-100" type="submit">
+                                <i class="fa fa-save px-2 "></i>
+                               حفظ ألاعدادات
+                            </button>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
     
-                    <button class="w-100 btn btn-primary btn-lg my-3" type="submit">
-                        حفظ المعلومات
-                    </button>
+
                 </form>
             </div>
         </div>

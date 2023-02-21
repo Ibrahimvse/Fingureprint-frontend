@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { FingureprintService } from '../../services/fingureprint.service';
 import { dtOptions,monthlyButtonsOptions } from '../../classes/datatable';
 import { DataTableDirective } from 'angular-datatables';
-import {Period} from "../../classes/util"
+import {TimePeriod,DateUtil} from "../../classes/util"
 declare var $:JQueryStatic;
 @Component({
     selector: 'app-monthly-report',
@@ -12,14 +12,16 @@ declare var $:JQueryStatic;
 export class MonthlyReportComponent implements OnInit {
     records:any[]=[];
     devices:any[]=[];
-    period: Period = new Period();
+    period:TimePeriod;
     dtOptions:any = {};
     isLoading:Boolean=false;
+    error=null;
     
     constructor( public fingureprint:FingureprintService) {}
 
     async ngOnInit() {
         this.fingureprint.routerlink="التقرير الشهري";
+        this.period=new TimePeriod();
         this.dtOptions={
             language:dtOptions.language,
             dom: 'Bfrtip',
@@ -39,6 +41,7 @@ export class MonthlyReportComponent implements OnInit {
     }
     submit(frm: NgForm) {
         this.records=[];
+        this.error=null
         this.isLoading=true;
         var connectdDevices=this.devices.filter(d=>d.status=='yes')
         var data={
@@ -49,12 +52,16 @@ export class MonthlyReportComponent implements OnInit {
             this.isLoading=false;
             this.dtOptions.buttons=this.setBuutons();
             this.records=<Array<any>>response;
+        },error=>{
+            console.log(error.error)
+            this.isLoading=false;
+            this.error=error.error;
         }) 
     }
 
     setBuutons(){
-        var startdate=this.period.start;
-        var enddate=this.period.end;
+        var startdate=DateUtil.getDateString(this.period.start);
+        var enddate=DateUtil.getDateString(this.period.end);
         var office=this.fingureprint.fingureprintoffice.name;
         var admin=this.fingureprint.fingureprintoffice.admin;
         var Difference_In_Time=new Date(this.period.end).getTime()-new Date(this.period.start).getTime();

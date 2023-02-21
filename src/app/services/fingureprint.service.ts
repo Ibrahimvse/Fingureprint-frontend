@@ -76,5 +76,9 @@ export class FingureprintService {
         return this.http.post(this.url+"/fingureprint/fingureprintoffice/timeoffReport/",data)
     }
 
+    addUserToDevice(data:any):Observable<any>{
+        return this.http.post(this.url+"/fingureprint/device/addUserToDevice/",data)
+    }
+
     
 }

@@ -7,7 +7,7 @@ import { Employee } from '../../../classes/employee';
 import { department } from '../../../classes/colleges';
 import { dtOptions } from '../../../classes/datatable';
 
-import {Period} from "../../../classes/util"
+import {DateUtil,TimePeriod} from "../../../classes/util"
 @Component({
     selector: 'app-employee-report',
     templateUrl: './employee-report.component.html',
@@ -17,7 +17,7 @@ export class EmployeeReportComponent implements OnInit {
     id: string;
     records:any[]=[];
     devices:any[]=[];
-    period: Period = new Period();
+    period:TimePeriod;
     dtOptions:any = {};
     isLoading:Boolean=false;
     constructor(
@@ -28,6 +28,7 @@ export class EmployeeReportComponent implements OnInit {
 
     async ngOnInit()  {
         this.id = await this.Activerouter.snapshot.params['id'];
+        this.period=new TimePeriod();
         this.dtOptions = {
             language: dtOptions.language,
             dom: 'Bfrtip',
@@ -76,8 +77,8 @@ export class EmployeeReportComponent implements OnInit {
     }
 
     setBuutons(){
-        var startdate=this.period.start;
-        var enddate=this.period.end;
+        var startdate=DateUtil.getDateString(this.period.start);
+        var enddate=DateUtil.getDateString(this.period.end);
         var name=this.Employee.name;
         var office=this.fingureprint.fingureprintoffice.name;
         var Difference_In_Time=new Date(this.period.end).getTime()-new Date(this.period.start).getTime();

@@ -26,7 +26,8 @@ import { EmployeeTimeoffComponent } from './attendance/employees/employee-timeof
 import { TimeoffReportComponent } from './attendance/timeoff-report/timeoff-report.component';
 import { BackupComponent } from './attendance/backup/backup.component'
 
-
+import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { DatepickerComponent } from './datepicker/datepicker.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { BackupComponent } from './attendance/backup/backup.component'
     FingureprintComponent,
     EditCollegeComponent,
     FingureprintEmployeesComponent, DevicesComponent, DailyReportComponent, MonthlyReportComponent, 
-    EditEmployeeComponent, EmployeesListComponent, EmployeeReportComponent, EmployeeTimeoffComponent, TimeoffReportComponent, BackupComponent
+    EditEmployeeComponent, EmployeesListComponent, EmployeeReportComponent, EmployeeTimeoffComponent, TimeoffReportComponent, BackupComponent, DatepickerComponent
   ],
   imports: [
     BrowserModule,
@@ -49,10 +50,13 @@ import { BackupComponent } from './attendance/backup/backup.component'
     AppRoutingModule,
     MaterialModule,
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     NgbModule
   ],
   providers: [
-    BsModalRef
+    BsModalRef,
+    BsDatepickerConfig
+    
   ],
   bootstrap: [AppComponent]
 })

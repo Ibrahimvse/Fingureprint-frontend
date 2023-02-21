@@ -6,7 +6,7 @@ import { RoutingService } from '../../../services/routing.service';
 import { Employee } from '../../../classes/employee';
 import { department } from '../../../classes/colleges';
 import { dtOptions } from '../../../classes/datatable';
-import { Period } from '../../../classes/util';
+import { TimePeriod } from '../../../classes/util';
 import { ModalService } from '../../../services/modal.service';
 
 @Component({
@@ -17,11 +17,11 @@ export class EmployeeTimeoffComponent implements OnInit {
     Employee: Employee = new Employee();
     id: string;
     records: any[] = [];
-    period: Period = new Period();
+    period:TimePeriod;
     dtOptions: any = {};
     isLoading: Boolean = false;
     SelectedItem: any = null;
-    TimeOffPeriod = new Period();
+    TimeOffPeriod = new TimePeriod();
     EmpolyeeTotalTime:string="00:00:00"
     TimePeriod = {
         starttime: '08:30',
@@ -35,6 +35,7 @@ export class EmployeeTimeoffComponent implements OnInit {
     ) {}
 
     async ngOnInit() {
+        this.period=new TimePeriod();
         this.id = await this.Activerouter.snapshot.params['id'];
         this.dtOptions = {
             language: dtOptions.language,

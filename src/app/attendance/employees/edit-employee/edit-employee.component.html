@@ -1,5 +1,5 @@
-<div class="container m-45">
-    <div class="row mx-12">
+<div class=" m-45 mx-9">
+    <div class="row">
         <div class="col-md-12 col-lg-12">
             <form #frm="ngForm" class="needs-validation" (ngSubmit)="submit()">
                 <div class="row">
@@ -16,7 +16,7 @@
                 <div class="row my-4" >
                     <div class="col-md-4">
                         <label for="department" class="form-label">ألقسم:</label>
-                        <select class="form-select" id="department" name="department" (change)="onDepartmentChange($event);" [(ngModel)]="Employee.department"  required>
+                        <select class="form-select w-100" id="department" name="department" (change)="onDepartmentChange($event);" [(ngModel)]="Employee.department"  required>
                             <option *ngFor="let item of this.fingureprint.fingureprintoffice.Departments;let i=index;"  [value]="item.name" >
                                 {{item.name}}
                             </option>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-md-4 offset-4">
                         <label for="units" class="form-label">الشعبة أو الوحدة:</label>
-                        <select class="form-select" id="units"   [(ngModel)]="Employee.unit" name="units" required>
+                        <select class="form-select w-100" id="units"   [(ngModel)]="Employee.unit" name="units" required>
                             <option *ngFor="let item of this.SelectedDepartment.units;let i=index;"  [value]="item.name"  >
                                 {{item.name}}
                             </option>
@@ -45,11 +45,22 @@
                     </div>
                 </div>
                 <hr class="my-6" />
+                <div class="row">
+                    <div class="col-md-4">
+                        <button class="w-100 btn btn-success " type="submit">
+                            <i class="fa fa-save fa-lg px-2"></i>
+                            حفظ المعلومات
+                        </button>
+                    </div>
 
-                <button class="w-100 btn btn-primary btn-lg" type="submit">
-                    <i class="fa fa-save fa-lg px-2"></i>
-                    حفظ المعلومات
-                </button>
+                    <div class="col-md-4 offset-md-4">
+                        <button class="w-100 btn btn-success " (click)="cancel()">
+                            <i class="fa fa- fa-times px-2"></i>
+                           ألغاء ألتعديل
+                        </button>
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>

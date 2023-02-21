@@ -56,4 +56,7 @@ export class EditEmployeeComponent implements OnInit {
             console.log(error)
         });
     }
+    cancel(){
+        this.router.navigateTo('fingureprint/employees/employeeslist');
+    }
 }

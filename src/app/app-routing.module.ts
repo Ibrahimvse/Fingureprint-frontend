@@ -18,6 +18,11 @@ import { BackupComponent } from './attendance/backup/backup.component'
 
 const routes: Routes = [
     {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'fingureprint',
+    },
+    {
         path: 'fingureprint',
         component: FingureprintComponent,
         children: [

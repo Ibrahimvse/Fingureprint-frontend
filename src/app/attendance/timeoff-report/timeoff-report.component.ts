@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { FingureprintService } from '../../services/fingureprint.service';
 import { dtOptions,monthlyButtonsOptions } from '../../classes/datatable';
 import { DataTableDirective } from 'angular-datatables';
-import {Period} from "../../classes/util"
+import {TimePeriod,DateUtil} from "../../classes/util"
 declare var $:JQueryStatic;
 @Component({
   selector: 'app-timeoff-report',
@@ -12,7 +12,7 @@ declare var $:JQueryStatic;
 })
 export class TimeoffReportComponent implements OnInit {
   records:any[]=[];
-  period: Period = new Period();
+  period:TimePeriod;
   dtOptions:any = {};
   isLoading:Boolean=false;
   
@@ -20,6 +20,7 @@ export class TimeoffReportComponent implements OnInit {
 
   async ngOnInit() {
       this.fingureprint.routerlink="ألاجازات الزمنية";
+      this.period=new TimePeriod();
       this.dtOptions={
           language:dtOptions.language,
           dom: 'Bfrtip',
@@ -43,8 +44,8 @@ export class TimeoffReportComponent implements OnInit {
   }
 
   setBuutons(){
-      var startdate=this.period.start;
-      var enddate=this.period.end;
+    var startdate=DateUtil.getDateString(this.period.start);
+    var enddate=DateUtil.getDateString(this.period.end);
       var office=this.fingureprint.fingureprintoffice.name;
       var admin=this.fingureprint.fingureprintoffice.admin;
       var Difference_In_Time=new Date(this.period.end).getTime()-new Date(this.period.start).getTime();

@@ -27,7 +27,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "angular-datatables": "^11.1.2",
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^4.6.1",
     "datatables.net": "^1.10.20",
     "datatables.net-buttons": "^1.7.0",
     "datatables.net-buttons-dt": "^1.7.0",

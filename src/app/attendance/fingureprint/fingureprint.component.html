@@ -1,8 +1,5 @@
 <div class="wrapper ">
-    <div class="sidebar border-left border-red">
-        <div class="sidebar-header ">
-            <h4> <i class="fas fa-fingerprint"></i> البصمة الالكترونية </h4>
-         </div>
+    <div class="sidebar border-left">
          <ul class="list-unstyled">
             <li>
                 <a routerLink="employees" routerLinkActive="active" >
@@ -49,9 +46,6 @@
     </div>
 
     <div class="contents">
-        <div class="page-header  d-flex d-inline-flex justify-content-between w-100">
-            <h4 class="d-inline "> {{this.fingureprint.fingureprintoffice.name +" / "+this.fingureprint.routerlink}} </h4> 
-        </div>
         <div>
             <router-outlet></router-outlet>
         </div>

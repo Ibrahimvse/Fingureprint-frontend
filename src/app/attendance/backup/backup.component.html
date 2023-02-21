@@ -1,11 +1,11 @@
 <input style="display: none" type="file" (change)="importDatabase($event)" accept=".db" #databaseFileInput>
 <input style="display: none" type="file" (change)="importConfigs($event)" accept=".json" #configFileInput>
 
-<div class="card m-45 mx-10">
+<div class="card m-45 mx-9">
     <header class="card-header py-3">
-        <h5 class="d-inline"> <i class="fa fa-database pl-3 pr-1"></i> قاعدة البيانات</h5>
+        <h4 > <i class="fa fa-database pl-3 pr-1"></i> قاعدة البيانات</h4>
     </header>
-    <div class="card-body">
+    <div class="card-body settings">
         <div class="row  px-3 py-5 mx-0">
             <div class="col-md-4 ">
                 <button type="button" class="btn btn-success btn-block w-100 " (click)="databaseFileInput.click();" [disabled]="isLoading"> 
@@ -24,11 +24,10 @@
 
 <div class="card m-45 mx-10">
     <header class="card-header py-3">
-        <h5 class="d-inline"> <i class="fa fa-cogs pl-3"></i> أعدادات البرنامج</h5>
+        <h4 > <i class="fa fa-cogs pl-3"></i> أعدادات البرنامج</h4>
     </header>
-    <div class="card-body">
+    <div class="card-body settings">
         <div class="row  px-3 py-5 mx-0">
-            <div class="row  px-3 py-5 mx-0">
                 <div class="col-md-4 ">
                     <button type="button" class="btn btn-success btn-block w-100 "  (click)="configFileInput.click();" [disabled]="isLoading"> 
                         <i class="fa fa-file-import px-2"></i> أستيراد ألاعدادات 
@@ -39,9 +38,6 @@
                         <i class="fa fa-file-export px-2 fa-rotate-180"></i> تصدير ألاعدادات
                     </button>
                 </div>
-    
-            </div>
-
         </div>
     </div>
 </div>

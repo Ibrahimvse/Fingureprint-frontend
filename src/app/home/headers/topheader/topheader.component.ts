@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FingureprintService } from '../../../services/fingureprint.service';
+
 declare var $: any;
 @Component({
     selector: 'app-topheader',
@@ -6,7 +8,7 @@ declare var $: any;
     styleUrls: ['./topheader.component.scss'],
 })
 export class TopheaderComponent implements OnInit {
-    constructor() {}
+    constructor(public fingureprint: FingureprintService) {}
 
     ngOnInit(): void {
         $('#sidebarCollapse i,#dismiss').on('click', function () {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FingureprintService } from '../../services/fingureprint.service';
 import { dtOptions } from '../../classes/datatable';
 import { DataTableDirective } from 'angular-datatables';
+import { ModalService } from '../../services/modal.service';
+
 
 @Component({
     selector: 'app-devices',
@@ -14,7 +16,8 @@ export class DevicesComponent implements OnInit {
     isLoading:Boolean=false;
     SelectedDevice:any;
     mode:string="deviceUsers"
-    constructor(public fingureprint: FingureprintService) {}
+    newUserName:string=""
+    constructor(public fingureprint: FingureprintService,public modal: ModalService) {}
 
     async ngOnInit() {
         this.fingureprint.routerlink="الاجهزة المتصلة"
@@ -55,6 +58,24 @@ export class DevicesComponent implements OnInit {
         this.isLoading=true;
         this.fingureprint.downloadUsersFromDevices(data).subscribe((response)=>{
             this.Users=response;
+            this.isLoading=false;
+        })
+
+    }
+
+    addUserToDevices(){
+        var connectedDevices=this.devices.filter((d)=>d.status=='yes');
+        var data={
+            devices:connectedDevices,
+            user:{
+                name:this.newUserName
+            }
+        }
+
+        this.isLoading=true;
+        this.fingureprint.addUserToDevice(data).subscribe((response)=>{
+            this.modal.hide();
+            this.doanLoadUsers();
             this.isLoading=false;
         })
 

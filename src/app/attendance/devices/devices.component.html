@@ -40,14 +40,18 @@
         </tr>
       </tbody>
     </table>
-    <div class="d-flex d-inline-flex justify-content-between w-100 mt-5">
-      <button class="btn btn-success" (click)="connectDevices()">
-        <i class="fa fa-redo px-2"></i> تحديث الاتصال بالاجهزة
-      </button>
-      <button class="btn btn-success" (click)="doanLoadUsers();">
-        <i class="fa fa-download px-2"></i> تحديث الموظفين من الاجهزة
-      </button>
+    <div class="row mx-0 mt-4 pr-0">
+      <div class="col-md-4 pr-0">
+        <button class="btn btn-success btn-block" (click)="connectDevices()">
+          <i class="fa fa-redo px-2 "></i> تحديث الاتصال بالاجهزة
+        </button>
+      </div>
 
+      <div class="col-md-4 offset-md-4">
+        <button class="btn btn-success btn-block" (click)="doanLoadUsers();">
+          <i class="fa fa-download px-2"></i> تحديث الموظفين من الاجهزة
+        </button>
+      </div>
     </div>
   </article>
 </div>
@@ -62,16 +66,14 @@
       </div>
     </div>
     <div *ngIf="Users.length" class="my-0">
-      <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mb-5 mt-0">
-        <h5 class="d-inline" *ngIf="mode=='deviceUsers'">عرض بيانات موظفين {{SelectedDevice.name}}</h5>
+      <div class="section-header  mb-2 bg-light">
+        <h4  *ngIf="mode=='deviceUsers'">عرض بيانات موظفين {{SelectedDevice.name}}</h4>
       </div>
       <table id="userstable" datatable [dtOptions]="this.dtOptions" class="
-                table table-responsive
+                table 
                 border-dark border-top
                 table-bordered table-striped
                 row-border
-                table-sm
-                w-100
                 p-0
                 m-0
             ">
@@ -105,19 +107,18 @@
         </div>
       </div>
     </div>
-    <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mb-5 mt-0" *ngIf="mode=='newUsers' && Users.length==0 && isLoading==false">
-      <h5 class="d-inline" >لم يتم العثور على بيانات جديدة من الاجهزة</h5>
+    <div class="section-header"  *ngIf="mode=='newUsers' && Users.length==0 && isLoading==false">
+      <h4  >لم يتم العثور على بيانات جديدة من الاجهزة</h4>
     </div>
     <div *ngIf="Users.length" class="my-0">
-      <div class="section-header d-flex d-inline-flex justify-content-between w-100 border mb-5 mt-0">
-        <h5 class="d-inline" *ngIf="mode=='newUsers'">تم أضافة  {{Users.length}}  موظف جديد الى قاعدة بيانات الموظفين</h5>
+      <div class="section-header">
+        <h4  *ngIf="mode=='newUsers'">تم أضافة  {{Users.length}}  موظف جديد الى قاعدة بيانات الموظفين</h4>
       </div>
       <table id="userstable" datatable [dtOptions]="this.dtOptions" class="
-                table table-responsive
+                table 
                 border-dark border-top
                 table-bordered table-striped
                 row-border
-                table-sm
                 w-100
                 p-0
                 m-0
@@ -142,3 +143,34 @@
     </div>
   </article>
 </div>
+
+
+
+<ng-template #Addtemplate>
+  <div class="modal-header">
+      <h4 class="modal-title pull-left">   أضافة موظف جديد </h4>
+      <button type="button" class="btn close pull-right font-size-20" aria-label="Close" (click)="modal.hide()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body ">
+      <div class="row px-5 mx-0">
+          <div class="col-md-4">
+            <label for="newuser"> ألاسم ألثلاثي:</label>
+            <input type="text" name="newuser" id="newuser" [(ngModel)]="newUserName">
+          </div>
+      </div>
+      <div class="row px-5 mx-0 py-8">
+          <div class="col-md-4 ">
+              <button type="button" class="btn btn-success btn-block w-100" (click)="addUserToDevices();">
+                  اضافة
+               </button>     
+          </div>
+          <div class="col-md-4 offset-4">
+              <button type="button" class="btn btn-secondary btn-block w-100" (click)="modal.hide()">
+                  الغاء
+              </button>
+          </div>
+      </div>
+  </div>
+</ng-template>

@@ -31,9 +31,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/assets/css/bootstrap/bootstrap.rtl.min.css",
-              "src/assets/css/bootstrap/bootstrap-select.css",
+               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/assets/css/bootstrap/bootstrap-rtl.css",
+              "src/assets/css/bootstrap/datepicker.css",
               "src/assets/css/font-awesome/css/fontawesome-all.min.css",
               "src/assets/css/font-awesome/css/font-electro.css",
               "src/assets/css/bootstrap/icheck-bootstrap.css",
@@ -43,7 +43,7 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
-              "src/assets/js/bootstrap/bootstrap.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
               "node_modules/datatables.net/js/jquery.dataTables.js",
               "node_modules/jszip/dist/jszip.js",
               "node_modules/datatables.net-buttons/js/dataTables.buttons.js",

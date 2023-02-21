@@ -5,10 +5,10 @@
         <img src="../../../../assets/img/0.png" class="logo mx-3" />
       </div>
       <div class="col-4 text-center">
-        <h1 class="cairo font-size-30">جامعة الموصل</h1>
-        <h1 class="cairo font-size-30">
+        <h4 class="cairo  border-bottom border-dark pb-3 "> رئاسة جامعة ألموصل</h4>
+        <h2 class="cairo ">
           وحدة الهويات والبصمة الالكترونية
-        </h1>
+        </h2>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
         <img src="../../../../assets/img/fingureprint.png" class="logo mx-3" />
@@ -29,14 +29,20 @@
         <li class="nav-item mx-3">
           <a class="nav-link " routerLink="/fingureprint">البصمة الالكترونية</a>
         </li>
+        <li class="nav-item nav-link pr-11 text-success" >
+          {{this.fingureprint.fingureprintoffice.name}}  <span *ngIf="this.fingureprint.fingureprintoffice.name.length">/</span>{{this.fingureprint.routerlink}}
+        </li>
       </ul>
+      <ul class="nav navbar-nav mr-auto">
 
+      </ul>
       <ul class="nav navbar-nav mr-auto ml-0 float-left">
         <li class="nav-item" >
-          <a class="nav-link nav-link-local" routerLink="/fingureprint/editcollege" >
+          <a class="nav-link" routerLink="/fingureprint/editcollege" >
             <i class="fa fa-cogs px-1 fa-rotate-180 "></i> ألاعدادات
           </a>
         </li>
+
       </ul>
     </div>
   </nav>

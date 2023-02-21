@@ -7,6 +7,7 @@ export class FingurePrintOffice{
     TimePeriod = {
         inTime: '08:30',
         outTime: '14:30',
+        ThuresDay:'13:30'
     };
     addDepartment(){
         this.Departments.push(new department())
@@ -16,7 +17,8 @@ export class FingurePrintOffice{
     }
     addDevice(){
         var d=new device();
-        d.ip="192.168.01."+(this.Devices.length+1);
+        d.name=d.name + (this.Devices.length+1)
+        d.ip="192.168.1."+(this.Devices.length+201);
         this.Devices.push(d)
     }
     removeDevice(i:number){
@@ -33,7 +35,10 @@ export class FingurePrintOffice{
         this.admin=response.admin;
         this.Departments=response.Departments;
         this.Devices=response.Devices;  
-        this.TimePeriod=response.TimePeriod; 
+        if(response.TimePeriod){
+            this.TimePeriod=response.TimePeriod; 
+        }
+        
     }
 }
 export class department{
@@ -41,7 +46,7 @@ export class department{
     units:Array<unit>=[];
 }
 export class device{
-    name:string='';
+    name:string='جهاز';
     ip:string='';
     status:string='no'
 }

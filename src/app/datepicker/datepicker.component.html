@@ -1,0 +1,9 @@
+<label [for]="id" class="form-label float-end">{{label}}</label>
+<div class="input-group">
+    <input #inputDate type="text" placeholder="Datepicker" [id]="id" class="form-control border-success" bsDatepicker
+        (bsValueChange)="onDateChange($event)" [bsValue]="input" [(ngModel)]="input"
+        [bsConfig]="{ isAnimated: true, dateInputFormat: 'YYYY-MM-DD' }" >
+    <div class="input-group-prepend ">
+        <span class="input-group-text bg-success text-transparent" (click)="inputDate.click()"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
+    </div>
+</div>
